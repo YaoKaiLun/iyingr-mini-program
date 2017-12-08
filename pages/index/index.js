@@ -1,114 +1,57 @@
-const comingSoonMovies = [{
-    poster: 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505701555.webp',
-    id: '26950070'
-  }, {
-    poster: 'https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1491314385.1.webp',
-    id: '27103195'
-  }, {
-    poster: 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505712371.webp',
-    id: '27205042'
+const firstPage = [{
+  id: '1',
+  title: '装修秘诀',
+  digest: '文艺气息爆棚的精致白色现代家',
+  poster: 'https://cloud-minapp-1131.cloud.ifanrusercontent.com/1eNDc3TmmbboTqKa.jpg',
+  collect: 0
+}, {
+  id: '2',
+  title: '咖啡指南',
+  digest: '咖啡制作终极指南',
+  poster: 'https://cloud-minapp-1131.cloud.ifanrusercontent.com/1eNDYBVedtSdnNRR.jpeg',
+  collect: 0
+}, {
+  id: '3',
+  title: '特斯拉卡车发布',
+  digest: '你以为只是发卡车，马斯克却把世界踩在脚下',
+  poster: 'https://cloud-minapp-1131.cloud.ifanrusercontent.com/1eNDLNIcksPYFzMl.jpg',
+  collect: 0
+}, {
+  id: '4',
+  title: 'iReader Ocean 电子书评测',
+  digest: '国产千元电子书能否复制 MIUI 的辉煌？',
+  poster: 'http://images.ifanr.cn/wp-content/uploads/2017/12/Ocean23.jpg',
+  collect: 0
 }]
 
-const firstPageMovies = [{
-  id: '1292052',
-  title: '肖申克的救赎',
-  genres: '犯罪, 剧情',
+const lastPage = [{
+  id: '5',
+  title: '超新约全书',
+  digest: '一个以折磨人为乐趣的上帝',
+  poster: 'https://media.ifanrusercontent.com/media/user_files/hydrogen/45/df/45df7216505002c00b5d888f6a5137fc2088c3a4-6cf38167dde685621d472c16c88b9d9e47f85c7b.jpg',
   collect: 0
 }, {
-  id: '1291546',
-  title: '霸王别姬',
-  genres: '剧情, 爱情, 同性',
-  collect: 0
-}, {
-  id: '1295644',
-  title: '这个杀手不太冷',
-  genres: '动作, 剧情, 犯罪',
-  collect: 0
-}, {
-  id: '1292720',
-  title: '阿甘正传',
-  genres: '爱情, 剧情',
-  collect: 0
-}, {
-  id: '1292063',
-  title: '美丽人生',
-  genres: '剧情, 喜剧, 爱情',
-  collect: 0
-}, {
-  id: '1291561',
-  title: '千与千寻',
-  genres: '剧情, 动画, 奇幻',
-  collect: 0
-}, {
-  id: '1295124',
-  title: '辛德勒的名单',
-  genres: '剧情, 历史, 战争',
-  collect: 0
-}, {
-  id: '1292722',
-  title: '泰坦尼克号',
-  genres: '剧情, 爱情, 灾难',
-  collect: 0
-}, {
-  id: '3541415',
-  title: '盗梦空间',
-  genres: '剧情, 动作, 科幻',
-  collect: 50
-}, {
-  id: '2131459',
-  title: '机器人总动员',
-  genres: '喜剧, 爱情, 科幻',
-  collect: 50
-}]
-
-const lastPageMovies = [{
-  id: '1292001',
-  title: '海上钢琴师',
-  genres: '剧情, 音乐',
-  collect: 0
-},{
-  id: '3793023',
-  title: '三傻大闹宝莱坞',
-  genres: '剧情, 喜剧, 爱情',
-  collect: 0
-}, {
-  id: '3011091',
-  title: '忠犬八公的故事',
-  genres: '剧情',
-  collect: 0
-}, {
-  id: '1291549',
-  title: '放牛班的春天',
-  genres: '剧情, 音乐',
-  collect: 50
-}, {
-  id: '1292213',
-  title: '大话西游之大圣娶亲',
-  genres: '喜剧, 爱情, 奇幻',
-  collect: 0
+    id: '6',
+    title: '2001太空漫游 2001',
+    digest: '现代科幻电影技术的里程碑',
+    poster: 'https://media.ifanrusercontent.com/media/user_files/hydrogen/d3/bd/d3bd4900a1ca1ed76e3bd39b9961084d3fe8234c-ba44bb070dd36bc3a6a0adbe1b4faa524673fe9b.jpg',
+    collect: 0
 }]
 
 let isEnd = false
 
 Page({
   data: {
-    comingSoonMovies: [],
-    movieList: [],
+    articles: [],
     loading: false,
     loadMoreText: '加载更多'
   },
   onLoad: function() {
-    this.getComingSoonMovies(),
-    this.getFirstPageMovies()
+    this.getfirstPage()
   },
-  getComingSoonMovies: function() {
+  getfirstPage: function() {
     this.setData({
-      comingSoonMovies
-    })
-  },
-  getFirstPageMovies: function() {
-    this.setData({
-      movieList: this.addReadStatus(firstPageMovies)
+      articles: this.addReadStatus(firstPage)
     })
   },
   loadMore: function() {
@@ -116,7 +59,7 @@ Page({
       this.setData({loading: true})
       setTimeout(() => {
         this.setData({
-          movieList: this.addReadStatus(firstPageMovies.concat(lastPageMovies)),
+          articles: this.addReadStatus(firstPage.concat(lastPage)),
           loading: false
         })
       }, 1000)
@@ -136,7 +79,7 @@ Page({
       readedPosts.push(id)
       wx.setStorageSync('readedPosts', readedPosts)
     }
-    this.setData({movieList: this.addReadStatus(this.data.movieList)})
+    this.setData({articles: this.addReadStatus(this.data.articles)})
     wx.navigateTo({
       url: `../detail/index?id=${id}`
     })
