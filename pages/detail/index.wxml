@@ -1,7 +1,4 @@
 <view class="article-title">{{article.title}}</view>
-<image class="article-poster" src="{{article.poster}}" />
-<view class="article-desc">
-  <view>{{article.category}}  {{article.created_at}}</view>
-</view>
+<view class="article-desc">{{article.created_at}}</view>
 <view class="article-content">{{article.content}}</view>
-<button class="article-share-btn" plain="{{true}}" open-type="share"></button>
+<button class="article-share-btn" plain="{{true}}" open-type="share" />

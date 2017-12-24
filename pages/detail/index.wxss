@@ -4,10 +4,6 @@
   margin: 10rpx 0;
 }
 
-.article-poster {
-  width: 100%;
-}
-
 .article-desc {
   margin: 10rpx;
   color: gray;

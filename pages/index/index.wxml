@@ -1,8 +1,8 @@
-<view class="article-item" wx:for="{{articles}}" wx:for-item="article" wx:for-index="index" wx:key="id">
-  <image class="article-poster" src="{{article.poster}}" data-id="{{article.id}}" data-index="{{index}}" bindtap="toDetailPage"></image>
+<view class="article-item" wx:for="{{articles}}" wx:for-item="article" wx:key="id">
+  <image class="article-cover" src="{{article.cover}}" data-id="{{article.id}}" bindtap="toDetailPage" />
   <view class="article-desc {{article.isReaded ? 'article-item--clicked' : ''}}">
     <view class="article-item__title">
-      <view class="article-item__title--left" data-id="{{article.id}}" data-index="{{index}}" bindtap="toDetailPage">
+      <view class="article-item__title--left" data-id="{{article.id}}" bindtap="toDetailPage">
         {{article.title}}
       </view>
       <view class="article-item__title--right">
@@ -10,7 +10,7 @@
         {{ article.collect}}    
       </view>  
     </view>
-    <view>{{article.digest}}</view>
+    <view>{{article.description}}</view>
   </view>
 </view>
 <button class="load-more-btn" type="default" plain="{{true}}" loading="{{loading}}" bindtap="loadMore">
